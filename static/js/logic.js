@@ -20,7 +20,7 @@ d3.json(dataURL).then(function (data) {
     // // Define a function that we want to run once for each feature in the features array.
     // // Give each feature a popup that describes the place and time of the earthquake.
     function onEachFeatureFn(feature, layer) {
-      layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><p>${new Date(feature.properties.time)}</p><br><p>Magnitude:${(feature.properties.mag)}</p>`);
+      layer.bindPopup(`<h3>${feature.properties.place}</h3><hr><h5>${new Date(feature.properties.time)}</h5><h5>Magnitude: ${(feature.properties.mag)}</h5><h5>Depth: ${(feature.geometry.coordinates[2])}</h5> km`);
     }
     
     let earthquakes = L.geoJSON(earthquakeData, {
@@ -75,14 +75,14 @@ d3.json(dataURL).then(function (data) {
     
             const div = L.DomUtil.create('div', 'legend');
             const depths = [0, 10, 30, 50, 70, 90];
-            const labels = [];
+            const labels = ["Depth"];
             let from, to;
     
             for (let i = 0; i < depths.length; i++) {
                 from = depths[i];
                 to = depths[i + 1];
     
-                labels.push(`<i style="background:${pickAColor(from + 1)}"></i> ${from}${to ? `&ndash;${to}` : '+'}`);
+                labels.push(`<i style="background:${pickAColor(from + 1)}"></i> ${from}${to ? `&ndash;${to}` : '+'} km`);
             }
     
             div.innerHTML = labels.join('<br>');

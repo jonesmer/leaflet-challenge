@@ -1,5 +1,5 @@
 // url to retrieve the data
-const dataURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
+const dataURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 //   getcolor function from leaflet's choropeleth page:
 function pickAColor(depth) {
     return depth >90 ? "#FF0000" :
